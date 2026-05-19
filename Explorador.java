@@ -1,29 +1,34 @@
-/**
- * Classe abstrata que representa um explorador na Caça ao Tesouro Paralela.
- * Define a estrutura básica para diferentes tipos de exploradores.
- */
+
 public abstract class Explorador {
-    
-    // * Construtor que inicializa todos os atributos do explorador.
-    
+//atributos
 
+    private String nome, tipo, tarefa;
+    private int prioridade;
+//construtor
 
-    /**
-     * Método abstrato que deve ser implementado pelas subclasses.
-     * Define como cada tipo de explorador executa sua tarefa.
-     * @throws TarefaInvalidaException Se a tarefa for inválida
-     */
-    public abstract void executarTarefa() throws TarefaInvalidaException;
-    
-    /**
-     * Exibe o status completo do explorador com formatação clara.
-     */
-    public void exibirStatus() {
+    public Explorador(String nome, String tipo, String tarefa, int prioridade) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.tarefa = tarefa;
+        this.prioridade = prioridade;
 
     }
-    
-    // Getters para acesso aos atributos encapsulados
+//metodo abstrato 
 
+    public abstract void executarTarefa() throws TarefaInvalidaException;
+//metodo exibirStatus
 
+    public void exibirStatus() {
+        System.out.println("Status do Explorador:");
+        System.out.println("Nome: " + nome);
+        System.out.println("Tarefa: " + tarefa);
+        System.out.println("Prioridade: " + prioridade);
+        System.out.println("Tipo: " + tipo);
+        System.out.println("--------------------");
+    }
+//metodo getTarefa
+
+    public String getTarefa() {
+        return this.tarefa;
+    }
 }
-

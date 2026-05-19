@@ -1,27 +1,34 @@
-/**
- * Explorador cuidadoso que executa tarefas com precisão e atenção aos detalhes.
- * Implementa Runnable para execução em thread separada.
- */
+
 public class ExploradorCuidadoso extends Explorador implements Runnable {
-    
-    // * Construtor do explorador cuidadoso.
-    
-    /**
-     * Implementação específica da execução de tarefa para exploradores cuidadosos.
-     * Exploradores cuidadosos executam tarefas com mais cautela e precisão.
-     * @throws TarefaInvalidaException Se a tarefa for nula ou vazia
-     */
+//construtor
+
+    public ExploradorCuidadoso(String nome, int prioridade, String tarefa) {
+        super(nome, "Cuidadoso", tarefa, prioridade);
+    }
+//sobreescrevendo o metodo executarTarefa
+
     @Override
     public void executarTarefa() throws TarefaInvalidaException {
-        // Valida se a tarefa é válida
+        //validando a tarefa
+        if (getTarefa() == null || getTarefa().isEmpty()) {
+            //caso de erro
+            throw new TarefaInvalidaException("Tarefa inválida para Explorador Cuidadoso!");
+        }
+        //imprimindo a tarefa
+        System.out.println("Explorador Cuidadoso explorando " + getTarefa());
+        System.out.println("--------------------");
     }
-    
-    /**
-     * Método run() executado quando a thread é iniciada.
-     * Trata exceções e chama executarTarefa().
-     */
+//sobreescrevendo o metodo run
+
     @Override
     public void run() {
+        try {
+            //chamando o metodo executarTarefa
+            executarTarefa();
+            //caso de erro
+        } catch (TarefaInvalidaException e) {
+            //imprimindo o erro
+            System.err.println("Erro no Explorador Cuidadoso: " + e.getMessage());
+        }
     }
 }
-
